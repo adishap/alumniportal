@@ -36,7 +36,7 @@
  <input type="hidden" name="login" value="login">
 <button type="submit" class="btn btn-primary" style="text-align:center">LogIn</button><br><br>
 Not Registered Yet?
-<a href="register_alumni.php">Register</a> today.
+<a href="alumni_register.php">Register</a> today.
 </form>
 
 <?php
@@ -56,7 +56,7 @@ Not Registered Yet?
 				else{
 					$user_id = mysql_result($query_run,0,'fusername');
 					$_SESSION['user_id'] = $user_id;
-					header('location:profile.php');
+					header('location:alumni_profile.php');
 					}
 		 }
 		 else{
