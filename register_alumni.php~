@@ -118,7 +118,7 @@
  <input type="hidden" name="register" value="register">
 <button type="submit" class="btn btn-primary" >Register</button><br><br>
 Already registered?
-<a href="log_in.php">Sign in</a> now.
+<a href="alumni_register.php">Sign in</a> now.
 </form>
 
   </body>
