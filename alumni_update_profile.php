@@ -35,72 +35,26 @@
 <div class="row">
 <label>Name </label><br>
 <div class="col-sm-3"  >	
-<input name="first_name" type="text" placeholder="First Name"required />
+<input name="first_name" type="text" placeholder="First Name" disabled/>
 </div>
 <div class="col-sm-3"  >
 <input name="middle_name" type="text" placeholder="Middle Name" />
 </div>
 <div class="col-sm-3"  >
-<input name="last_name" type="text" placeholder="Last Name" required />
+<input name="last_name" type="text" placeholder="Last Name"/>
 </div>
 <div class="col-sm-3"  >
 <!--intentionally blank-->
 </div>
 </div >
 <br><br>
-<label>Gender</label><br>
-<div class="row">
-<div class="col-sm-2"  >
-<input type="radio" name="sex" value="male" checked>Male
-</div>
-<div class="col-sm-2"  >
-<input type="radio" name="sex" value="female">Female
-</div>
-<div class="col-sm-2"  >
-<input type="radio" name="sex" value="other">other
-</div>
-<div class="col-sm-6"  >
-<!--intentionally blank-->
-</div>
-</div>
-<br><br>
-<label>Date of Birth</label><br>
-    <input type="text" type="text" name="date_of_birth" required/>
-<br><br>
-<label>Course</label><br>
- <select name="course" >
-  <option value="M.Tech(IT)">M.Tech(IT)</option>
-  <option value="B.com(Hons)">B.com(Hons)</option>
-  <option value="MCA (6 Years)">MCA (6 Years)</option>
-  <option value="MBA(Management Science)-5 Yrs">MBA(Management Science)-5 Yrs</option>
-<option value="MBA(Management Science)-2 Yrs">MBA(Management Science)-2 Yrs</option>
-<option value="MBA(Tourism Administration)">MBA(Tourism Administration)</option>
-<option value="MBA(APR)">MBA(APR)</option>
-</select>
-<br><br>
-<div class="row">
-<div class="col-sm-6">
-<label>Admission Year</label><br>
-<select name="admission_year" value ="<?php echo $year ;?>">
-<script>var i;for(i=1990; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
-</select>
-</div>
-<div class="col-sm-6">
-<label>Passing Year</label><br>
-<select name="passing_year" value ="<?php echo $year ;?>">
-<script>var i;for(i=1991; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
-</select>
-<br><br>
-</div>
-</div>
 <div class="row">
 <div class="col-sm-4">
 <label>Mobile Number</label><br>
 <input name="mobile_no" type="text" placeholder="+91-9876543210"required />
 </div>
 <div class="col-sm-8">
-<label>Email</label><br>
-<input name="email_id" type="email" placeholder="abc@de.f"required />
+<!--Intentionally Left blank-->
 </div>
 </div>
 <br><br>
@@ -109,11 +63,15 @@
 <input name="city" type="text" placeholder="Mumbai" required />
 </div>
 <br><br>
-<label>Choose Password</label>
-<input type="password" name="new_password" style="margin-left:2%" placeholder="Password" required>
+Change Password:
+<label>Present Password</label>
+<input type="password" name="present_password" style="margin-left:2%" placeholder="Password" >
+<br>
+<label>New Password</label>
+<input type="password" name="new_password" style="margin-left:2%" placeholder="New Password" >
 <br>
 <label>Re-enter Password</label>
-<input type="password" name="entered_password" style="margin-left:1%" placeholder="Re-enter Password" required>
+<input type="password" name="entered_password" style="margin-left:1%" placeholder="Re-enter Password" >
 <br><br>
  <input type="hidden" name="register" value="register">
 <button type="submit" class="btn btn-primary" >Register</button><br><br>

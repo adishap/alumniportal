@@ -75,10 +75,10 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Alumni<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="alumni_association">IIPS Alumni Association</a></li>
+								<li><a href="alumni_association.php">IIPS Alumni Association</a></li>
                                 <li><a href="alumni_gallary.php">Photo Gallery</a></li>
-                                <li><a href="#">Extraordinary Achievements</a></li>
-								<li><a href="alumni_register.php">Register</a></li>
+                                <li><a href="alumni_achievement.php">Extraordinary Achievements</a></li>
+								<li><a href="register_alumni.php">Register</a></li>
                                 <li><a href="log_in.php">Log In</a></li>
 								<li><a href="alumni_profile">Profile</a></li>
                                 <li><a href="#">Update Profile</a></li> 

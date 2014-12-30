@@ -29,8 +29,8 @@
 <div class="col-sm-12"  style="text-align:left; margin:5% 0 5% 7%">	 
 <form action="#" method="post">
 <h3> Log In</h3>
-<label for="input1">User Name </label><br>
-<input name="user_id" type="text" placeholder="Username" id="input1" required /><br><br>
+<label for="input1">Email Address </label><br>
+<input name="user_email" type="email" placeholder="Email Address" id="input1" required /><br><br>
 <label for="input2">Password</label><br>
 <input name="password" type="password" placeholder="Password" id="input2" required/><br><br>
  <input type="hidden" name="login" value="login">
@@ -43,19 +43,19 @@ Not Registered Yet?
 	     require 'db_connect.php';
 		 
 	   if(isset($_POST['login'])){
-		$user_id = $_POST['user_id'];
+		$user_email = $_POST['user_email'];
 		$password = md5($_POST['password']);
 		
-		$login_query = "SELECT * FROM `user_login` WHERE `user_id`= '".$user_id."' AND `password`='".$password."'";
+		$login_query = "SELECT * FROM `alum_login` WHERE `user_email`= '".$user_email."' AND `password`='".$password."'";
 		 if($query_run = mysql_query($login_query)){
 				$query_num_rows = mysql_num_rows($query_run);
 				if($query_num_rows == 0){
-					echo "Enter a valid username and password.";
+					echo "Enter a valid email address and password.";
 					mysql_close($con);
 					}
 				else{
-					$user_id = mysql_result($query_run,0,'fusername');
-					$_SESSION['user_id'] = $user_id;
+					$user_email = mysql_result($query_run,0,'user_email');
+					$_SESSION['user_email'] = $user_email;
 					header('location:alumni_profile.php');
 					}
 		 }
