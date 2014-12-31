@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+session_start();
+ob_start();
+ if(!isset($_SESSION['user_email']) || (trim($_SESSION['user_email']) == '')) {
+ 	header('location: log_in.php');
+ }else{
+ ?>
+ <!--code -->
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -20,122 +28,159 @@
   </head>
 
   <body>
-  <script>
-    $('#sandbox-container input').datepicker({
-    });
-</script>
+  
 
      <?php
 	 	include('header.php');
 	 ?>
- 
+<!--Update name form-->
 <form action="#" method="post" style="text-align:left;margin-left:5%">
-<h3>Register</h3>
-
+<legend>Update Name</legend>
 <div class="row">
 <label>Name </label><br>
 <div class="col-sm-3"  >	
-<input name="first_name" type="text" placeholder="First Name" disabled/>
+<input name="first_name" type="text" placeholder="First Name" disabled />
 </div>
 <div class="col-sm-3"  >
 <input name="middle_name" type="text" placeholder="Middle Name" />
 </div>
 <div class="col-sm-3"  >
-<input name="last_name" type="text" placeholder="Last Name"/>
+<input name="last_name" type="text" placeholder="Last Name" required />
 </div>
 <div class="col-sm-3"  >
 <!--intentionally blank-->
 </div>
 </div >
-<br><br>
-<div class="row">
-<div class="col-sm-4">
-<label>Mobile Number</label><br>
-<input name="mobile_no" type="text" placeholder="+91-9876543210"required />
-</div>
-<div class="col-sm-8">
-<!--Intentionally Left blank-->
-</div>
-</div>
-<br><br>
-<div class="row">
-<label>Current City</label><br>
-<input name="city" type="text" placeholder="Mumbai" required />
-</div>
-<br><br>
-Change Password:
-<label>Present Password</label>
-<input type="password" name="present_password" style="margin-left:2%" placeholder="Password" >
 <br>
-<label>New Password</label>
-<input type="password" name="new_password" style="margin-left:2%" placeholder="New Password" >
-<br>
-<label>Re-enter Password</label>
-<input type="password" name="entered_password" style="margin-left:1%" placeholder="Re-enter Password" >
-<br><br>
- <input type="hidden" name="register" value="register">
-<button type="submit" class="btn btn-primary" >Register</button><br><br>
-Already registered?
-<a href="log_in.php">Sign in</a> now.
+
+<input type="hidden" name="update_name" value="update_name">
+<button type="submit" class="btn btn-primary" >Update Name</button><br><br>
 </form>
-<!--back-end for registration begins-->
-<?php 
 
- require 'db_connect.php';
+<!--Update password -->
+<form action="#" method="post" style="text-align:left;margin-left:5%">
+<fieldset>
 
-if(isset($_POST['register'])){
-	$first_name = $_POST['first_name'];
-	$middle_name = $_POST['middle_name'];
-	$last_name = $_POST['last_name'];
-	$gender = $_POST['sex'];
-	$date_of_birth = $_POST['date_of_birth'];
-	$course = $_POST['course'];
-	$admission_year = $_POST['admission_year'];
-	$passing_year = $_POST['passing_year'];
-	$mobile_no = $_POST['mobile_no'];
-	$user_email = $_POST['email_id'];
-	$city = $_POST['city'];	
-	$new_password = $_POST['new_password'];
-	$entered_password = $_POST['entered_password'];
+<!-- Form Name -->
+<legend>Change Password:</legend>
+<div class='row'>
+<div class='col-md-3'>
+<!-- Password input-->
+  <label>Present Password</label><br>
+    <input id="old_password" name="old_password" required=""  placeholder="Password" type="password">
+</div>
+<div class='col-md-3'>
+<!-- Password input-->
+  <label >New Password</label><br>
+    <input id="new_password" name="new_password" required=""  placeholder="New Password" type="password">
+ </div>
+<!-- Password input-->
+<div class='col-md-3'>
+  <label>Re-enter Password</label><br>
+    <input id="re_password" name="re_password" required="" placeholder="Re-enter Password" type="password">
+</div>
+<div class='col-md-3'>
+<!--blank-->
+</div>
+</div><br>
+<input type="hidden" name="update_password" value="update_password">
+<button type="submit" class="btn btn-primary" >Update Password</button><br><br>
 
-	if($new_password == $entered_password){
-	$password = md5($new_password);
-	$check_email_query = "SELECT * FROM alum_master_table WHERE `user_email` = '".$user_email."'";
-	if($query_run = mysql_query($check_email_query)){
-		$query_num_rows = mysql_num_rows($query_run);
-		if($query_num_rows == 0){
-			echo $insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`) VALUES ('$user_email','$first_name','$middle_name','$last_name','$gender','$date_of_birth','$admission_year','$passing_year','$course','$city','$mobile_no')";
-			if($query_run = mysql_query($insert_query)){
-				//now we will store password and email in alum login table
-				echo $login_detail_query = "INSERT INTO `alum_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
-				if($query_run = mysql_query($login_detail_query)){
-					$_SESSION['user_email'] = $user_email;
-					header('location:alumni_profile.php');
-				}
-				else{
-					echo "error in registering login details";
-				}
-			}
-			else{
-				echo "error in inserting data in master table";
-			}
-		}
-		else{
-			echo "This email id is already registered.";
-		}
-	}
-	else{
-		echo "Error in checking email_id";
-	}
 
-}else{
-echo "Passwords don't match.";
-}
-}
-?>
-<!--back-end for registration ends-->
-<!--footer-->
-<?php
+</fieldset>
+</form>
+
+<!--Update martialstatus-->
+<form action="#" method="post" style="text-align:left;margin-left:5%">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Update Martial Status</legend>
+
+<!-- Multiple Radios -->
+<div class="row">
+  <div class="col-md-2">
+      <input name="radios" id="radios-0" value="married" checked="checked" type="radio">
+      Married
+	</div>
+  <div class="col-md-2">
+    <input name="radios" id="radios-1" value="unmarried" type="radio">
+      Unmarried
+	</div>
+	<div class="col-md-8">
+	<!--intentionally blank-->
+	</div>
+	</div>
+  <br>
+<!-- Text input-->
+  <label>Date of Anniversary</label><br>  
+  <input id="date_of_anniversary" name="date_of_anniversary" placeholder="date" type="text"> <br><br>
+
+<!-- Button -->
+<input type="hidden" name="update_martial_status" value="update_martial_status">
+<button type="submit" class="btn btn-primary" >Update</button><br><br>
+</fieldset>
+</form>
+<!--Update permenentand local add -->
+<div class="row">
+<div class="col-md-6">
+<!--per add-->
+<form action="#" method="post" style="text-align:left;margin-left:10%">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Change Permanent Address</legend>
+  <label>Starting Address</label><br>
+  <textarea class="form-control" id="per_starting_address" name="per_starting_address"></textarea>
+  <br>
+  <label >City</label> <br> 
+  <input id="per_city" name="per_city" placeholder="Indore" required="" type="text">
+ <br> <br>
+  <label>State</label> <br> 
+  <input id="per_state" name="per_state" placeholder="MP"required="" type="text">
+ <br> <br>
+  <label>Country</label>  <br>
+ <input id="per_country" name="per_country" placeholder="India" required="" type="text">
+<br> <br>
+  <label>Pincode</label> <br> 
+<input id="per_pincode" name="per_pincode" placeholder="452010" type="text">
+<br><br><!-- Button -->
+<input type="hidden" name="update_per_address" value="update_per_address">
+<button type="submit" class="btn btn-primary" >Update Address</button><br><br>
+</fieldset>
+</form>
+
+</div>
+<div class="col-md-6">
+<!--local add-->
+<form action="#" method="post" style="text-align:left">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Change Local Address</legend>
+  <label>Starting Address</label><br>
+  <textarea class="form-control" id="local_starting_address" name="local_starting_address"></textarea>
+  <br>
+  <label >City</label> <br> 
+  <input id="local_city" name="local_city" placeholder="Indore" required="" type="text">
+ <br> <br>
+  <label>State</label> <br> 
+  <input id="local_state" name="local_state" placeholder="MP"required="" type="text">
+ <br> <br>
+  <label>Country</label>  <br>
+ <input id="local_country" name="local_country" placeholder="India" required="" type="text">
+<br> <br>
+  <label>Pincode</label> <br> 
+<input id="local_pincode" name="local_pincode" placeholder="452010" type="text">
+<br><br><!-- Button -->
+<input type="hidden" name="update_local_address" value="update_local_address">
+<button type="submit" class="btn btn-primary" >Update Address</button><br><br>
+</fieldset>
+</form>
+
+</div>
+</div>
+	 <?php
 		include('footer.php');
 		include('jsLinks.php');
 		include('slider_jsLinks.php');
@@ -190,8 +235,6 @@ echo "Passwords don't match.";
 			}
 	?>
 	
-
-
   <!-- Script for testimonial -->
 	<script>
 	$(document).ready(function() {
@@ -206,5 +249,6 @@ echo "Passwords don't match.";
   
   </body>
 </html>
-  </body>
-</html>
+ <?php	
+ }
+ ?>

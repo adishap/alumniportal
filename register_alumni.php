@@ -1,3 +1,63 @@
+<!--back-end for registration begins-->
+<?php 
+
+ require 'db_connect.php';
+ $email_err = '';
+ $pwd_err = '';
+
+if(isset($_POST['register'])){
+	$first_name = $_POST['first_name'];
+	$middle_name = $_POST['middle_name'];
+	$last_name = $_POST['last_name'];
+	$gender = $_POST['sex'];
+	$date_of_birth = $_POST['date_of_birth'];
+	$course = $_POST['course'];
+	$admission_year = $_POST['admission_year'];
+	$passing_year = $_POST['passing_year'];
+	$roll_no = $_POST['roll_no'];
+	$mobile_no = $_POST['mobile_no'];
+	$user_email = $_POST['email_id'];
+	$city = $_POST['city'];	
+	$new_password = $_POST['new_password'];
+	$entered_password = $_POST['entered_password'];
+
+	if($new_password == $entered_password){
+	$password = md5($new_password);
+	$check_email_query = "SELECT * FROM alum_master_table WHERE `user_email` = '".$user_email."'";
+	if($query_run = mysqli_query($con,$check_email_query)){
+		$query_num_rows = mysqli_num_rows($query_run);
+		if($query_num_rows == 0){
+			$insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`,`roll_no`) 
+			VALUES ('$user_email','$first_name','$middle_name','$last_name','$gender','$date_of_birth','$admission_year','$passing_year','$course','$city','$mobile_no','$roll_no')";
+			if($query_run = mysqli_query($con,$insert_query)){
+				//now we will store password and email in alum login table
+				$login_detail_query = "INSERT INTO `alum_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
+				if($query_run = mysqli_query($con,$login_detail_query)){
+					header('location:alumni_profile.php');
+				}
+				else{
+					$email_err = "error in registering login details";
+				}
+			}
+			else{
+				$email_err = "error in inserting data in master table";
+			}
+		}
+		else{
+			$email_err = "This email id is already registered.";
+		}
+	}
+	else{
+		$email_err = "Error in checking email_id";
+	}
+
+}else{
+$pwd_err = "Passwords don't match.";
+}
+}
+?>
+<!--back-end for registration ends-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,8 +81,12 @@
 
   <body>
   <script>
-    $('#sandbox-container input').datepicker({
-    });
+    $(function() {
+$( ".datepicker" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+});
 </script>
 
      <?php
@@ -65,7 +129,7 @@
 </div>
 <br><br>
 <label>Date of Birth</label><br>
-    <input type="text" type="text" name="date_of_birth" required/>
+    <input type="text" type="text" name="date_of_birth" class="datepicker" required/>
 <br><br>
 <label>Course</label><br>
  <select name="course" >
@@ -93,6 +157,9 @@
 <br><br>
 </div>
 </div>
+<label>Roll Number:</label><br>
+    <input type="text" type="text" name="roll_no"/>
+<br><br>
 <div class="row">
 <div class="col-sm-4">
 <label>Mobile Number</label><br>
@@ -100,7 +167,13 @@
 </div>
 <div class="col-sm-8">
 <label>Email</label><br>
-<input name="email_id" type="email" placeholder="abc@de.f"required />
+<input name="email_id" type="email" placeholder="abc@de.f"required /><br>
+<?php
+if(trim($email_err)!= ''){
+	echo $email_err;
+}
+ ?>
+
 </div>
 </div>
 <br><br>
@@ -109,73 +182,23 @@
 <input name="city" type="text" placeholder="Mumbai" required />
 </div>
 <br><br>
-<label>Choose Password</label>
-<input type="password" name="new_password" style="margin-left:2%" placeholder="Password" required>
+<label>Choose Password</label><br>
+<input type="password" name="new_password" placeholder="Password" required>
 <br>
-<label>Re-enter Password</label>
-<input type="password" name="entered_password" style="margin-left:1%" placeholder="Re-enter Password" required>
-<br><br>
+<label>Re-enter Password</label><br>
+<input type="password" name="entered_password" placeholder="Re-enter Password" required>
+<br><?php
+if(trim($pwd_err)!= ''){
+	echo $pwd_err;
+}
+ ?>
+<br>
  <input type="hidden" name="register" value="register">
 <button type="submit" class="btn btn-primary" >Register</button><br><br>
 Already registered?
 <a href="log_in.php">Sign in</a> now.
 </form>
-<!--back-end for registration begins-->
-<?php 
 
- require 'db_connect.php';
-
-if(isset($_POST['register'])){
-	$first_name = $_POST['first_name'];
-	$middle_name = $_POST['middle_name'];
-	$last_name = $_POST['last_name'];
-	$gender = $_POST['sex'];
-	$date_of_birth = $_POST['date_of_birth'];
-	$course = $_POST['course'];
-	$admission_year = $_POST['admission_year'];
-	$passing_year = $_POST['passing_year'];
-	$mobile_no = $_POST['mobile_no'];
-	$user_email = $_POST['email_id'];
-	$city = $_POST['city'];	
-	$new_password = $_POST['new_password'];
-	$entered_password = $_POST['entered_password'];
-
-	if($new_password == $entered_password){
-	$password = md5($new_password);
-	$check_email_query = "SELECT * FROM alum_master_table WHERE `user_email` = '".$user_email."'";
-	if($query_run = mysql_query($check_email_query)){
-		$query_num_rows = mysql_num_rows($query_run);
-		if($query_num_rows == 0){
-			echo $insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`) VALUES ('$user_email','$first_name','$middle_name','$last_name','$gender','$date_of_birth','$admission_year','$passing_year','$course','$city','$mobile_no')";
-			if($query_run = mysql_query($insert_query)){
-				//now we will store password and email in alum login table
-				echo $login_detail_query = "INSERT INTO `alum_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
-				if($query_run = mysql_query($login_detail_query)){
-					$_SESSION['user_email'] = $user_email;
-					header('location:alumni_profile.php');
-				}
-				else{
-					echo "error in registering login details";
-				}
-			}
-			else{
-				echo "error in inserting data in master table";
-			}
-		}
-		else{
-			echo "This email id is already registered.";
-		}
-	}
-	else{
-		echo "Error in checking email_id";
-	}
-
-}else{
-echo "Passwords don't match.";
-}
-}
-?>
-<!--back-end for registration ends-->
 <!--footer-->
 <?php
 		include('footer.php');

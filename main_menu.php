@@ -81,7 +81,7 @@
 								<li><a href="register_alumni.php">Register</a></li>
                                 <li><a href="log_in.php">Log In</a></li>
 								<li><a href="alumni_profile">Profile</a></li>
-                                <li><a href="#">Update Profile</a></li> 
+                                <li><a href="alumni_update_profile">Update Profile</a></li> 
                                 <li><a href="#">Search a Friend</a></li>
                                 <li><a href="log_out.php">Log Out</a></li> 
                                 <li><a href="alumni_FAQ">FAQ</a></li>     
