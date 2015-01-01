@@ -97,21 +97,22 @@ changeYear: true
 <h3>Register</h3>
 
 <div class="row">
-<label>Name </label><br>
-<div class="col-sm-3"  >	
+
+<div class="col-sm-3"  >
+<label>Name </label><br>	
 <input name="first_name" type="text" placeholder="First Name"required />
 </div>
-<div class="col-sm-3"  >
+<div class="col-sm-3"  ><br>
 <input name="middle_name" type="text" placeholder="Middle Name" />
 </div>
-<div class="col-sm-3"  >
+<div class="col-sm-3"  ><br>
 <input name="last_name" type="text" placeholder="Last Name" required />
 </div>
 <div class="col-sm-3"  >
 <!--intentionally blank-->
 </div>
 </div >
-<br><br>
+<br>
 <label>Gender</label><br>
 <div class="row">
 <div class="col-sm-2"  >
@@ -127,7 +128,7 @@ changeYear: true
 <!--intentionally blank-->
 </div>
 </div>
-<br><br>
+<br>
 <label>Date of Birth</label><br>
     <input type="text" type="text" name="date_of_birth" class="datepicker" required/>
 <br><br>
@@ -143,23 +144,27 @@ changeYear: true
 </select>
 <br><br>
 <div class="row">
-<div class="col-sm-6">
+<div class="col-sm-3">
 <label>Admission Year</label><br>
 <select name="admission_year" value ="<?php echo $year ;?>">
 <script>var i;for(i=1990; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
 </select>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-3">
 <label>Passing Year</label><br>
 <select name="passing_year" value ="<?php echo $year ;?>">
 <script>var i;for(i=1991; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
 </select>
-<br><br>
 </div>
-</div>
+<div class="col-sm-3">
 <label>Roll Number:</label><br>
-    <input type="text" type="text" name="roll_no"/>
-<br><br>
+    <input type="text" name="roll_no" placeholder="IT-2K11-02"/>
+</div>
+<div class="col-sm-3">
+<!--blank-->
+</div>
+</div>
+<br>
 <div class="row">
 <div class="col-sm-4">
 <label>Mobile Number</label><br>
@@ -176,12 +181,12 @@ if(trim($email_err)!= ''){
 
 </div>
 </div>
-<br><br>
-<div class="row">
+<br>
+
 <label>Current City</label><br>
 <input name="city" type="text" placeholder="Mumbai" required />
-</div>
-<br><br>
+
+<br>
 <label>Choose Password</label><br>
 <input type="password" name="new_password" placeholder="Password" required>
 <br>
@@ -194,11 +199,11 @@ if(trim($pwd_err)!= ''){
  ?>
 <br>
  <input type="hidden" name="register" value="register">
-<button type="submit" class="btn btn-primary" >Register</button><br><br>
+<button type="submit" class="btn btn-primary" >Register</button><br>
 Already registered?
 <a href="log_in.php">Sign in</a> now.
 </form>
-
+<br>
 <!--footer-->
 <?php
 		include('footer.php');

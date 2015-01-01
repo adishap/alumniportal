@@ -23,8 +23,9 @@ ob_start();
 		include('slider_cssLinks.php');
 	?>
 	<style type="text/css">
-		
-	</style>
+tr{
+	margin-top:10%;}
+</style>
   </head>
 
   <body>
@@ -67,17 +68,17 @@ ob_start();
 <div class='col-md-3'>
 <!-- Password input-->
   <label>Present Password</label><br>
-    <input id="old_password" name="old_password" required=""  placeholder="Password" type="password">
+    <input id="old_password" name="old_password" required  placeholder="Password" type="password">
 </div>
 <div class='col-md-3'>
 <!-- Password input-->
   <label >New Password</label><br>
-    <input id="new_password" name="new_password" required=""  placeholder="New Password" type="password">
+    <input id="new_password" name="new_password" required  placeholder="New Password" type="password">
  </div>
 <!-- Password input-->
 <div class='col-md-3'>
   <label>Re-enter Password</label><br>
-    <input id="re_password" name="re_password" required="" placeholder="Re-enter Password" type="password">
+    <input id="re_password" name="re_password" required placeholder="Re-enter Password" type="password">
 </div>
 <div class='col-md-3'>
 <!--blank-->
@@ -100,11 +101,11 @@ ob_start();
 <!-- Multiple Radios -->
 <div class="row">
   <div class="col-md-2">
-      <input name="radios" id="radios-0" value="married" checked="checked" type="radio">
+      <input name="radios" id="radios-0" value="Married" checked="checked" type="radio">
       Married
 	</div>
   <div class="col-md-2">
-    <input name="radios" id="radios-1" value="unmarried" type="radio">
+    <input name="radios" id="radios-1" value="Unmarried" type="radio">
       Unmarried
 	</div>
 	<div class="col-md-8">
@@ -123,35 +124,45 @@ ob_start();
 </form>
 <!--Update permenentand local add -->
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-3">
 <!--per add-->
 <form action="#" method="post" style="text-align:left;margin-left:10%">
 <fieldset>
 
 <!-- Form Name -->
+
 <legend>Change Permanent Address</legend>
   <label>Starting Address</label><br>
   <textarea class="form-control" id="per_starting_address" name="per_starting_address"></textarea>
-  <br>
-  <label >City</label> <br> 
-  <input id="per_city" name="per_city" placeholder="Indore" required="" type="text">
- <br> <br>
-  <label>State</label> <br> 
-  <input id="per_state" name="per_state" placeholder="MP"required="" type="text">
- <br> <br>
-  <label>Country</label>  <br>
- <input id="per_country" name="per_country" placeholder="India" required="" type="text">
-<br> <br>
-  <label>Pincode</label> <br> 
-<input id="per_pincode" name="per_pincode" placeholder="452010" type="text">
-<br><br><!-- Button -->
+  <table class="table-condensed">
+  <tr>
+  <td><label >City </label></td> 
+  <td><input id="per_city" name="per_city" placeholder="Indore" required type="text"></td>
+  </tr>
+  <tr>
+  <td><label>State</label></td>  
+  <td><input id="per_state" name="per_state" placeholder="MP"required="" type="text"></td>
+ </tr>
+ <tr>
+  <td><label>Country</label></td>  
+ <td><input id="per_country" name="per_country" placeholder="India" required type="text"></td>
+ </tr>
+<tr>
+  <td><label>Pincode</label></td>
+<td><input id="per_pincode" name="per_pincode" placeholder="452010" type="text"></td>
+</tr>
+<tr><td><!-- Button -->
 <input type="hidden" name="update_per_address" value="update_per_address">
-<button type="submit" class="btn btn-primary" >Update Address</button><br><br>
+<button type="submit" class="btn btn-primary" >Update Address</button></td>
+</tr>
+</table>
 </fieldset>
 </form>
 
 </div>
-<div class="col-md-6">
+<div class="col-md-2">
+</div>
+<div class="col-md-3">
 <!--local add-->
 <form action="#" method="post" style="text-align:left">
 <fieldset>
@@ -160,26 +171,37 @@ ob_start();
 <legend>Change Local Address</legend>
   <label>Starting Address</label><br>
   <textarea class="form-control" id="local_starting_address" name="local_starting_address"></textarea>
-  <br>
-  <label >City</label> <br> 
-  <input id="local_city" name="local_city" placeholder="Indore" required="" type="text">
- <br> <br>
-  <label>State</label> <br> 
-  <input id="local_state" name="local_state" placeholder="MP"required="" type="text">
- <br> <br>
-  <label>Country</label>  <br>
- <input id="local_country" name="local_country" placeholder="India" required="" type="text">
-<br> <br>
-  <label>Pincode</label> <br> 
-<input id="local_pincode" name="local_pincode" placeholder="452010" type="text">
-<br><br><!-- Button -->
+  <table class="table-condensed">
+  <tr>
+  <td><label >City </label></td> 
+  <td><input id="local_city" name="local_city" placeholder="Indore" required type="text"></td>
+  </tr>
+  <tr>
+  <td><label>State</label></td>  
+  <td><input id="local_state" name="local_state" placeholder="MP"required="" type="text"></td>
+ </tr>
+ <tr>
+  <td><label>Country</label></td>  
+ <td><input id="local_country" name="local_country" placeholder="India" required type="text"></td>
+ </tr>
+<tr>
+  <td><label>Pincode</label></td>
+<td><input id="local_pincode" name="local_pincode" placeholder="452010" type="text"></td>
+</tr>
+<tr><td><!-- Button -->
 <input type="hidden" name="update_local_address" value="update_local_address">
-<button type="submit" class="btn btn-primary" >Update Address</button><br><br>
+<button type="submit" class="btn btn-primary" >Update Address</button></td>
+</tr>
+</table>
 </fieldset>
 </form>
 
 </div>
+<div class="col-md-4">
 </div>
+</div>
+
+<br>
 	 <?php
 		include('footer.php');
 		include('jsLinks.php');

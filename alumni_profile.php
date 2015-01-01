@@ -33,7 +33,90 @@ ob_start();
      <?php
 	 	include('header.php');
 	 ?>
-	 
+	 <!--contents-->
+	 <?php
+	 include 'db_connect.php';
+	 if(!empty($_GET['user_email'])){
+		 $user_email = mysql_real_escape_string(htmlentities($_GET['user_email']));
+	 }
+	 else{
+		 $user_email = $_SESSION['user_email'];
+		 }
+	 $query = "SELECT * FROM `alum_master_table` WHERE `user_email` = '$user_email'";
+	 $result = mysqli_query($con , $query);
+		 if(mysqli_num_rows($result)>0){
+		 	while($row = mysqli_fetch_array($result)) {
+				$name = $row['first_name']." ".$row['middle_name']." ".$row['last_name'];
+				$date_of_birth = $row['date_of_birth'];
+				$course = $row['course'];
+				$roll_no = $row['roll_no'];
+				$admission_year = $row['admission_year'];
+				$passing_year = $row['passing_year'];
+				$local_address = $row['loc_starting_address']." ".$row['loc_city']." ".$row['loc_pincode']." ".$row['loc_state']." ".$row['loc_country']." ".$row['loc_country_code'];
+				$per_address = $row['per_starting_address']." ".$row['per_city']." ".$row['per_pincode']." ".$row['per_state']." ".$row['per_country']." ".$row['per_country_code'];
+				$mobile_no = $row['mobile_no'];
+				$martial_status = $row['martial_status'];
+				if($martial_status == "Married"){
+					$date_of_anniversary = $row['date_of_anniversary'];
+					}
+			 }
+		 }
+	 ?>
+	 <div class="container">
+     <div class="row">
+     <div class="col-md-2">
+     <!--Space for image-->
+     <img src="..." alt="Display picture" height="200" width="200" border="1px">
+     </div>
+     <div class="col-md-10">
+     <br>
+     <h2><?php echo $name; ?></h2>
+     <h4><?php echo $course; ?></h4>
+     <h4><?php echo $admission_year."-".$passing_year; ?></h4>
+     </div>
+     </div>
+     <br>
+     <?php 
+	 if($roll_no != NULL){
+		 echo '<div class="row">
+     <div class="col-sm-3">
+     <strong>Roll Number</strong>
+     </div>
+     <div class="col-sm-9">'.$roll_no." </div>
+     </div>
+     <br>";
+		 } 
+	 ?>
+     
+     <div class="row">
+     <div class="col-sm-3">
+     <strong>Date Of Birth</strong>
+     </div>
+     <div class="col-sm-9">
+    <?php echo $date_of_birth; ?>
+     </div>
+     </div>
+     <br>
+     <div class="row">
+     <div class="col-sm-3">
+     <strong>Local Address</strong>
+     </div>
+     <div class="col-sm-9">
+     <?php echo $local_address;?>
+     </div>
+     </div>
+     <br>
+     <div class="row">
+     <div class="col-sm-3">
+     <strong>Permanent Address</strong>
+     </div>
+     <div class="col-sm-9">
+     <?php echo $per_address;?>
+     </div>
+     </div>
+     <br>
+     </div>
+          <br>
 	 <?php
 		include('footer.php');
 		include('jsLinks.php');

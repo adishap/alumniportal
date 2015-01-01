@@ -1,17 +1,18 @@
 <?php
 session_start();
 ob_start();
+$err = '';
  if(!isset($_SESSION['user_email']) || (trim($_SESSION['user_email']) == '')) {
      require 'db_connect.php';
 		
 
 if(isset($_POST['login'])){
-	$err = '';
+	
 		$_POST['password'];
 		$user_email = $_POST['user_email'];
 		$password = md5($_POST['password']);
 if(!empty($user_email) and !empty($password)){
-	$query = "Select * from alum_login where user_email ='".$user_email."' and password = '".$password."'";
+echo $query = "Select * from alum_login where user_email ='".$user_email."' and password = '".$password."'";
 $result = mysqli_query($con,$query);
 $row = mysqli_fetch_array($result);
 $row['user_email'].'<br>'.$row['password'];
@@ -25,10 +26,7 @@ $err = "Enter a valid email address and password.";
 mysqli_close($con);
 }
 }
-}
-else{
-	header("location: alumni_profile.php");
-}
+
  	?>
 
 <!DOCTYPE html>
@@ -154,3 +152,8 @@ Not Registered Yet?
   
   </body>
 </html>
+<?php 
+}
+else{
+	header("location: alumni_profile.php");
+}?>
