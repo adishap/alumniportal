@@ -94,7 +94,7 @@ ob_start();
 			 $city = $_POST['city'];
 			 $query .= " AND (`per_city` = '".$city."' OR `loc_city` = '".$city."')";
 			 }
-		 echo $query;
+		 $query;
 		 $search_result = mysqli_query($con , $query);
 		 if(mysqli_num_rows($search_result)>0){
 			 echo "<table class='table'>

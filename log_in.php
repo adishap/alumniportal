@@ -55,8 +55,8 @@ mysqli_close($con);
 
      <?php
 	 	include('header.php');
-	
-	 	?>
+	 ?>
+	 	
 <div class="row">
 <div class="col-sm-12"  style="text-align:left; margin:5% 0 5% 7%">	 
 <form action="#" method="post">

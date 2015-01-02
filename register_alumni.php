@@ -20,38 +20,39 @@ if(isset($_POST['register'])){
 	$city = $_POST['city'];	
 	$new_password = $_POST['new_password'];
 	$entered_password = $_POST['entered_password'];
-
+	//checks new password and reentered password
 	if($new_password == $entered_password){
-	$password = md5($new_password);
+	$password = md5($new_password);//md5()conversion of password
+	//checks if email exists in database or not 
 	$check_email_query = "SELECT * FROM alum_master_table WHERE `user_email` = '".$user_email."'";
 	if($query_run = mysqli_query($con,$check_email_query)){
 		$query_num_rows = mysqli_num_rows($query_run);
-		if($query_num_rows == 0){
+		if($query_num_rows == 0){//if no then register the user
 			$insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`,`roll_no`) 
 			VALUES ('$user_email','$first_name','$middle_name','$last_name','$gender','$date_of_birth','$admission_year','$passing_year','$course','$city','$mobile_no','$roll_no')";
 			if($query_run = mysqli_query($con,$insert_query)){
 				//now we will store password and email in alum login table
 				$login_detail_query = "INSERT INTO `alum_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
-				if($query_run = mysqli_query($con,$login_detail_query)){
+				if($query_run = mysqli_query($con,$login_detail_query)){//successful then redirect it to log-in
 					header('location:alumni_profile.php');
 				}
-				else{
+				else{//error in inserting login details in database
 					$email_err = "error in registering login details";
 				}
 			}
-			else{
+			else{//error in inserting user details in database
 				$email_err = "error in inserting data in master table";
 			}
 		}
-		else{
+		else{//error as email already exists in database
 			$email_err = "This email id is already registered.";
 		}
 	}
-	else{
+	else{//error in query for checking email in database
 		$email_err = "Error in checking email_id";
 	}
 
-}else{
+}else{//error as passwords don't match 
 $pwd_err = "Passwords don't match.";
 }
 }
@@ -68,40 +69,31 @@ $pwd_err = "Passwords don't match.";
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
     <title>IIPS | Alumni</title>
-	<!-- CSS and Javascript for date picker-->
-    <link rel="stylesheet" href="css/jquery-ui.css">
-<script src="jsLibrary/jquery.min.js"></script>
-<script src="jsLibrary/jquery-ui.js"></script>
+	
     <!-- Bootstrap core CSS -->
     <?php
 		include('cssLinks.php');
 		include('slider_cssLinks.php');
+		include('datepicker.php');
 	?>
 	<style type="text/css">
 		
 	</style>
+	
+
   </head>
 
   <body>
-  <script>
-    //date picker function
- $(function() {
-$( ".datepicker" ).datepicker({
-changeMonth: true,
-changeYear: true
-});
-});
-</script>
-
+  
      <?php
 	 	include('header.php');
 	 ?>
- 
+ <div class="container">
 <form action="#" method="post" style="text-align:left;margin-left:5%">
 <h3>Register</h3>
 
 <div class="row">
-
+<!--Form input for name-->
 <div class="col-sm-3"  >
 <label>Name </label><br>	
 <input name="first_name" type="text" placeholder="First Name"required />
@@ -117,6 +109,8 @@ changeYear: true
 </div>
 </div >
 <br>
+
+<!--Input for gender-->
 <label>Gender</label><br>
 <div class="row">
 <div class="col-sm-2"  >
@@ -133,9 +127,13 @@ changeYear: true
 </div>
 </div>
 <br>
+
+<!--Input for date of birth-->
 <label>Date of Birth</label><br>
-    <input type="text" name="date_of_birth" class="datepicker" required>
+    <input type="text" id="datepicker">
 <br><br>
+
+<!--Input for course-->
 <label>Course</label><br>
  <select name="course" >
   <option value="M.Tech(IT)">M.Tech(IT)</option>
@@ -147,6 +145,8 @@ changeYear: true
 <option value="MBA(APR)">MBA(APR)</option>
 </select>
 <br><br>
+
+<!--Input for Admission year-->
 <div class="row">
 <div class="col-sm-3">
 <label>Admission Year</label><br>
@@ -154,12 +154,15 @@ changeYear: true
 <script>var i;for(i=1990; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
 </select>
 </div>
+<!--Input for Passing Year-->
 <div class="col-sm-3">
 <label>Passing Year</label><br>
 <select name="passing_year" value ="<?php echo $year ;?>">
 <script>var i;for(i=1991; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
 </select>
 </div>
+
+<!--Input for Roll no-->
 <div class="col-sm-3">
 <label>Roll Number:</label><br>
     <input type="text" name="roll_no" placeholder="IT-2K11-02"/>
@@ -169,11 +172,14 @@ changeYear: true
 </div>
 </div>
 <br>
+
+<!--Input for Mobile No-->
 <div class="row">
 <div class="col-sm-4">
 <label>Mobile Number</label><br>
 <input name="mobile_no" type="text" placeholder="+91-9876543210"required />
 </div>
+<!--Input for Email id-->
 <div class="col-sm-8">
 <label>Email</label><br>
 <input name="email_id" type="email" placeholder="abc@de.f"required /><br>
@@ -182,18 +188,21 @@ if(trim($email_err)!= ''){
 	echo $email_err;
 }
  ?>
-
 </div>
 </div>
 <br>
 
+<!--Input for Local City-->
 <label>Current City</label><br>
 <input name="city" type="text" placeholder="Mumbai" required />
 <br>
 <br>
+
+<!--Input for Password-->
 <label>Choose Password</label><br>
 <input type="password" name="new_password" placeholder="Password" required>
 <br>
+<!--Input for Re-entered Password-->
 <label>Re-enter Password</label><br>
 <input type="password" name="entered_password" placeholder="Re-enter Password" required>
 <br><?php
@@ -202,11 +211,14 @@ if(trim($pwd_err)!= ''){
 }
  ?>
 <br>
+
+<!--Submit button-->
  <input type="hidden" name="register" value="register">
 <button type="submit" class="btn btn-primary" >Register</button><br>
 Already registered?
 <a href="log_in.php">Sign in</a> now.
 </form>
+</div>
 <br>
 <!--footer-->
 <?php
