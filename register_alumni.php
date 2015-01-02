@@ -68,7 +68,10 @@ $pwd_err = "Passwords don't match.";
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
     <title>IIPS | Alumni</title>
-
+	<!-- CSS and Javascript for date picker-->
+    <link rel="stylesheet" href="css/jquery-ui.css">
+<script src="jsLibrary/jquery.min.js"></script>
+<script src="jsLibrary/jquery-ui.js"></script>
     <!-- Bootstrap core CSS -->
     <?php
 		include('cssLinks.php');
@@ -81,7 +84,8 @@ $pwd_err = "Passwords don't match.";
 
   <body>
   <script>
-    $(function() {
+    //date picker function
+ $(function() {
 $( ".datepicker" ).datepicker({
 changeMonth: true,
 changeYear: true
@@ -130,7 +134,7 @@ changeYear: true
 </div>
 <br>
 <label>Date of Birth</label><br>
-    <input type="text" type="text" name="date_of_birth" class="datepicker" required/>
+    <input type="text" name="date_of_birth" class="datepicker" required>
 <br><br>
 <label>Course</label><br>
  <select name="course" >
@@ -185,7 +189,7 @@ if(trim($email_err)!= ''){
 
 <label>Current City</label><br>
 <input name="city" type="text" placeholder="Mumbai" required />
-
+<br>
 <br>
 <label>Choose Password</label><br>
 <input type="password" name="new_password" placeholder="Password" required>
