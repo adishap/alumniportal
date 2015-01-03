@@ -48,7 +48,7 @@ ob_start();
     <!--input middle name-->
     <input name="middle_name" type="text" placeholder="Middle Name" /><br><br>
     <!--input last Name-->
-    <input name="last_name" type="text" placeholder="Last Name"  /><br>
+    <input name="last_name" type="text" placeholder="Last Name" required /><br>
     <br>
 
     <!--Submit Button-->
@@ -154,7 +154,7 @@ ob_start();
     <tr>
     <!--input for permanent state-->
     <td><label>State</label></td>  
-    <td><input id="per_state" name="per_state" placeholder="MP"required="" type="text"></td>
+    <td><input id="per_state" name="per_state" placeholder="MP" required type="text"></td>
     </tr>
  
     <tr>
@@ -220,13 +220,13 @@ ob_start();
     <tr>
     <!--input for local address city-->
     <td><label >City </label></td> 
-    <td><input id="local_city" name="local_city" placeholder="Indore" required type="text"></td>
+    <td><input id="local_city" name="local_city"   placeholder="Indore" required  type="text"></td>
     </tr>
   
     <tr>
     <!--input for local address state-->
     <td><label>State</label></td>  
-    <td><input id="local_state" name="local_state" placeholder="MP"required="" type="text"></td>
+    <td><input id="local_state" name="local_state" placeholder="MP" required type="text"></td>
     </tr>
  
     <tr>
@@ -277,7 +277,120 @@ ob_start();
 
     <!-- tab5 start -->
     <div id="tab5" class="tab-content hide text-justify">
-    organisation info
+    <form action="#" method="post">
+    <!-- Form Name -->
+    <legend>Update Professional Information</legend>
+    <!-- input company Name -->  
+    <label>Company Name</label><br>
+    <input id="org_name" name="org_name" placeholder="TCS" required type="text">
+    <br>
+    <br>
+
+    <!-- input job title -->
+    <label >Job Title</label><br>
+    <input id="job_title" name="job_title" placeholder="CEO" required type="text">
+    <br>
+    <br>
+
+    <!-- input office email address -->
+    <label >Office Email Address</label><br>
+    <input id="office_email" name="office_email" placeholder="mark@tcs.in" type="email">
+    <br>
+    <br>
+
+    <!-- Organisation Address-->
+    <label>Office Address</label><br>
+    <table class="table-condensed">
+    
+    <tr>
+    <!--input for organisation address starting address-->
+    <td><label >Starting Address </label></td> 
+    <td><input id="org_starting_address" name="org_starting_address" placeholder="101,Ahinsa Tower" type="text"></td>
+    </tr>
+
+    <tr>
+    <!--input for organisation address city-->
+    <td><label >City </label></td> 
+    <td><input id="org_city" name="org_city" placeholder="Indore" type="text"></td>
+    </tr>
+  
+    <tr>
+    <!--input for local address pincode-->
+    <td><label>Pincode</label></td>
+    <td><input id="local_pincode" name="local_pincode" placeholder="452010" type="text"></td>
+    </tr>
+    
+    <tr>
+    <!--input for organisation address state-->
+    <td><label>State</label></td>  
+    <td><input id="org_state" name="org_state" placeholder="MP" type="text"></td>
+    </tr>
+ 
+    <tr>
+    <!--input for local address country-->
+    <td><label>Country</label></td>  
+    <td><input id="org_country" name="org_country" placeholder="India" type="text"></td>
+    </tr>
+
+    </table>
+    <br>
+    <input type="checkbox" name="business_owner" value="1" />
+    <label>Owns a business</label>
+
+    <br>
+    
+    <!--Submit Button-->
+    <input type="hidden" name="update_professional_info" value="update_professional_info">
+    <button type="submit" class="btn btn-primary" >Update Professional Information</button><br>
+    </form>
+    <?php
+    //backend code
+    if(isset($_POST['update_professional_info'])){
+      
+      $org_name = $_POST['org_name'];
+      $job_title = $_POST['job_title'];
+      $org_starting_address = $_POST['org_starting_address'];
+      $org_city = $_POST['org_city']; 
+      $org_state = $_POST['org_state'];
+      $org_country = $_POST['org_country'];
+      $org_pincode = $_POST['org_pincode'];
+      $org_email = $_POST['office_email'];
+      if(isset($_POST['business_owner'])&& ($_POST['business_owner'] == 1)){
+        $business_owner = 1;
+      }
+      else{
+        $business_owner = 0;
+      }
+
+      //check if info already exists or not
+      $check_user_query = "SELECT `user_email` FROM alum_career_info WHERE `user_email` = '".$user_email."'";
+      $result = mysqli_query($con , $check_user_query);
+      if(mysqli_num_rows($result)>0){
+        while($row = mysqli_fetch_array($result)) {
+          echo $row['user_email'];
+          //if exists then we will apply update query
+          $professional_update_query = "UPDATE `alum_career_info` SET `organisation_name`='".$org_name."',`job_title`='".$job_title."', `country`='".$org_country."',`state`='".$org_state."',`city`='".$org_city."',`starting_address`='".$org_starting_address."',`office_email_id`='".$org_email."',`self_employed`='".$business_owner."' WHERE `user_email` ='".$user_email."'";
+          if($update_result = mysqli_query($con , $professional_update_query)){
+            echo "<script>alert('Updation Successful.')</script>";
+          }
+          else{
+            echo "<script>alert('Opps!! Error in updating professional information in database.')</script>";
+          }
+        }
+      }
+      else{
+        //if information doesn't exists then we will apply insert query
+        $professional_update_query = "INSERT INTO `alum_career_info` (`user_email`, `organisation_name`, `job_title`, `country`, `state`, `city`, `starting_address`, `office_email_id`, `self_employed`) VALUES ('".$user_email."','".$org_name."','".$job_title."','".$org_country."','".$org_state."','".$org_city."','".$org_starting_address."','".$org_email."','".$self_employed."')";
+        if($update_result = mysqli_query($con , $professional_update_query)){
+         echo "<script>alert('Updation Successful.')</script>";
+        }
+        else{
+         echo "<script>alert('Opps!! Error in updating professional information in database.')</script>";
+        }
+      }
+    } 
+    ?>
+
     </div>
     <!-- tab5 ends -->
 
@@ -290,7 +403,7 @@ ob_start();
     
     <!-- input present password -->  
     <label>Present Password</label><br>
-    <input id="old_password" name="old_password" required  placeholder="Password" type="password">
+    <input id="old_password" name="old_password"  required placeholder="Password" type="password">
     <br>
     <br>
 
@@ -320,7 +433,39 @@ ob_start();
         $new_password = $_POST['new_password']; 
         $re_password = $_POST['re_password'];
 
-        //for obtaining old password
+        //first check new password and reentered passwords are same
+        if($new_password == $re_password){
+          //convert new password into md5
+          $new_password = md5($new_password);
+          //taking old password form database
+          $old_password_query = "SELECT `password` FROM alum_login WHERE `user_email` = '".$user_email."'";
+          $result = mysqli_query($con , $old_password_query);
+          if(mysqli_num_rows($result)>0){
+            while($row = mysqli_fetch_array($result)) {
+              $db_password = $row['password'];
+              //converting entered password into md5() form
+              $old_password = md5($old_password);
+
+              //if database password and old password match
+              if($db_password == $old_password){
+                //query for updation
+                $password_update_query = "UPDATE `alum_login` SET `password` = '".$new_password."'  WHERE `user_email` ='".$user_email."'";
+                if($password_update_result = mysqli_query($con,$password_update_query)){
+                  echo "<script>alert('Updation Successful.')</script>";
+                }
+                else{
+                  echo "<script>alert('Error in updating password in database.')</script>";
+                }
+              }
+              else{
+                echo "<script>alert('Please enter correct password.')</script>";
+              }
+            }
+          }
+        }
+        else{
+          echo "<script>alert('New password and re entered password don't match.')</script>";
+        }
       }
     ?>
 
