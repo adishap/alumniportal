@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>IIPS | Alumni</title>
+
+    <!-- Bootstrap core CSS -->
+    <?php
+		include('cssLinks.php');
+		include('slider_cssLinks.php');
+	?>
+	<style type="text/css">
+		
+	</style>
+  </head>
+
+  <body>
+   <div class="tab-content">
+					 <div class="tab-pane active" id="news" >
+						<ul class="media-list">
+						   <li class="media">
+							  <div class="media-body"><br>
+							  
+								    <div class="row">
+										<!-- <div class="col-md-1">
+										  <img class="featurette-image img-responsive" src="data:image/png;base64," data-src="holder.js/60x60/auto" alt="Generic placeholder image">
+										</div> -->
+										<div class="col-md-7">
+											<!-- <h5><a href="news#">IIPS Naac Visit complete on 15-Jan-2014  </a>  <span class="pull-right">Posted - 31st Dec 2013 </span></h5>-->
+											
+											<h5><a href="http://www.dauniv.ac.in/notices/OnlineMPUGPGAdmissionProcess2014.pdf"><i class="icon-info-sign"></i> Online MP UG and PG Admission process</a></h5>
+											<h5><a href="http://www.dauniv.ac.in/notices/updated_counseling%20_schedule_2014.pdf"><i class="icon-info-sign"></i>Counselling shedule for CET 2014</a></h5>
+											<h5><a href="http://www.dauniv.ac.in/admissions.php"><i class="icon-info-sign"></i>General Rules for Admission CET-2014</a></h5>
+											<h5><a href="http://www.dauniv.ac.in/notices/ADMISSION_2014-15.pdf"><i class="icon-info-sign"></i>General Rules for Admission for NON-CET</a></h5>
+											<h5><a href="http://www.dauniv.ac.in/notices/NRI%20Counselling.pdf"><i class="icon-info-sign"></i>Admissions to NRI seats in courses under cet 2014 </a></h5>
+											
+											
+										</div>
+
+										<div class="col-md-5">
+											<h5>Activities</h5>
+											<!-- <h5><a href="news#">IIPS Naac Visit complete on 15-Jan-2014  </a>  <span class="pull-right">Posted - 31st Dec 2013 </span></h5>-->
+											
+											<h5><a href="news#naac_photos"><i class="icon-info-sign"></i> Naac Visit photos dated 16/01/14 </a></h5>
+											<h5><a href="news#naac_photos1"><i class="icon-info-sign"></i> Naac Visit photos dated 15/01/14 </a></h5>
+											<h5><a href="news#naac_visit"><i class="icon-info-sign"></i> IIPS Naac Visit complete on 15-Jan-2014 </a></h5>
+											
+										</div>
+
+
+									</div><br><!-- end of row class -->
+
+     <?php
+	 	include('header.php');
+	 ?>
+	 
+	 <?php
+		include('footer.php');
+		include('jsLinks.php');
+		include('slider_jsLinks.php');
+	 ?>
+	 
+	
+	
+	<!-- Script for "News/Events" tab -->
+	<script src="assets/js/holder.js"></script>
+	<?php 
+
+		$browser = get_browser(null, true) ;
+		$browser =  strtolower($browser['browser']) ; 
+
+		if ($browser == 'ie') {
+		echo " 
+			<script>
+ 		 $(function () {
+  			$('#myTab a').click(function (e) {
+    			e.preventDefault();
+  				$(this).tab('show');
+			})
+
+    	    $('#myTab a:first').tab('show');
+
+ 			$(window).load(function(){
+ 			        $('#myModal').modal('show');
+ 			    });	   	    
+ 		 })
+	</script>
+
+		";
+
+
+		}
+				else {
+					echo " 
+					<script>
+		 		 $(function () {
+		  			$('#myTab a').click(function (e) {
+		    			e.preventDefault();
+		  				$(this).tab('show');
+					})
+
+		    	    $('#myTab a:first').tab('show');
+
+		 				   	    
+		 		 })
+			</script>
+
+				";
+			}
+	?>
+	
+  <!-- Script for testimonial -->
+	<script>
+	$(document).ready(function() {
+            $('ul#quotes').quote_rotator();
+            $('ul#button_quotes').quote_rotator();
+        });
+
+
+   </script>
+
+   <script src="https://www.surveymonkey.com/jsPop.aspx?sm=mM0njMJ6P3CyzaMh0OhMew_3d_3d"> </script>
+  
+  </body>
+</html>

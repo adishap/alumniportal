@@ -30,7 +30,7 @@ ob_start();
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab2">   Martial Status</a></li>
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab3">   Permanent Address</a></li>
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab4">   Local Address</a></li>
-       <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab5">  Job Title</a></li>
+       <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab5">  Professional Information</a></li>
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab6">  Change Password</a></li>
        </ul>
   <?php endblock() ; ?>
@@ -100,10 +100,40 @@ ob_start();
     <br>
     <br>
 
-    <!-- Text input Date of anniversary-->
-    <label>Date of Anniversary</label><br>  
-    <input id="date_of_anniversary" name="date_of_anniversary" placeholder="date" type="text"> <br><br>
+    <!--Input for date of anniversary-->
+  <label>Date of Anniversary</label><br>
+    <div class="row">
+    
+    <!-- Input for date-->
+    <div class="col-md-1">
+    <label>Date</label><br>
+    <select name="anniversary_date" value ="<?php echo $anniversary_date ;?>">
+      <script>var i;for(i=01; i<=31; i++) {document.write("<option>"+i + "</option>");}</script>
+    </select>
+    </div>
 
+    <!--Input for month-->
+    <div class="col-md-1">
+    <label>Month</label><br>
+    <select name="anniversary_month" value ="<?php echo $anniversary_month ;?>">
+      <script>var i;for(i=01; i<=12; i++) {document.write("<option>"+i + "</option>");}</script>
+    </select>
+    </div>
+
+    <!--Input for Year-->
+    <div class="col-md-1">
+    <label>year</label><br>
+    <select name="anniversary_year" value ="<?php echo $anniversary_year ;?>">
+      <script>var i;for(i=1970; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
+    </select>
+    </div>
+    
+    <div class="col-md-9">
+    <!--Intentionally Blank -->
+    </div>
+
+    </div>
+  <br>
     <!-- Button -->
     <input type="hidden" name="update_martial_status" value="update_martial_status">
     <button type="submit" class="btn btn-primary" >Update</button><br><br>
@@ -117,7 +147,10 @@ ob_start();
         if (!empty($_POST['martial_status']) || !empty($_POST['date_of_anniversary'])) {
         
           $martial_status = $_POST['martial_status'];
-          $date_of_anniversary = $_POST['date_of_anniversary']; 
+          $anniversary_date = $_POST['anniversary_date'];
+          $anniversary_month = $_POST['anniversary_month'];
+          $anniversary_year = $_POST['anniversary_year'];
+          $date_of_anniversary = $anniversary_year."-".$anniversary_month."-".$anniversary_date; 
 
           $martial_status_query = "UPDATE `alum_master_table` SET `martial_status`='".$martial_status."',`date_of_anniversary`='".$date_of_anniversary."' WHERE `user_email` ='".$user_email."'";
           if($martial_status_result = mysqli_query($con,$martial_status_query)){

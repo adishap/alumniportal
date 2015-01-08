@@ -193,8 +193,8 @@ else{
      </div>
      </div>
      <br>
-     
-     <h3>Professional Information</h3>
+
+     <!--ProfessionalInformation-->
 
      <?php
      $query = "SELECT * FROM `alum_career_info` WHERE `user_email` = '$user_email'";
@@ -212,6 +212,8 @@ else{
 	 		}
 	 	}
 	 ?>
+
+     <h3>Professional Information</h3>
 
 	 <!--Company Name-->
      <div class="row">

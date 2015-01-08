@@ -11,7 +11,10 @@ if(isset($_POST['register'])){
 	$middle_name = $_POST['middle_name'];
 	$last_name = $_POST['last_name'];
 	$gender = $_POST['sex'];
-	$date_of_birth = $_POST['date_of_birth'];
+	$birth_date = $_POST['birth_date'];
+	$birth_month = $_POST['birth_month'];
+	$birth_year = $_POST['birth_year'];
+	$date_of_birth = $birth_year."-".$birth_month."-".$birth_date;
 	$course = $_POST['course'];
 	$admission_year = $_POST['admission_year'];
 	$passing_year = $_POST['passing_year'];
@@ -152,8 +155,37 @@ if(isset($_POST['register'])){
 
 	<!--Input for date of birth-->
 	<label>Date of Birth</label><br>
-    <input type="text" id="datepicker">
-	<br>
+    <div class="row">
+    
+    <!-- Input for date-->
+    <div class="col-md-1">
+    <label>Date</label><br>
+    <select name="birth_date" value ="<?php echo $birth_date ;?>">
+	<script>var i;for(i=01; i<=31; i++) {document.write("<option>"+i + "</option>");}</script>
+	</select>
+    </div>
+
+    <!--Input for month-->
+    <div class="col-md-1">
+    <label>Month</label><br>
+    <select name="birth_month" value ="<?php echo $birth_month ;?>">
+	<script>var i;for(i=01; i<=12; i++) {document.write("<option>"+i + "</option>");}</script>
+	</select>
+    </div>
+
+    <!--Input for Year-->
+    <div class="col-md-1">
+    <label>year</label><br>
+    <select name="birth_year" value ="<?php echo $birth_year ;?>">
+	<script>var i;for(i=1970; i<=new Date().getFullYear(); i++) {document.write("<option>"+i + "</option>");}</script>
+	</select>
+    </div>
+    
+    <div class="col-md-9">
+    <!--Intentionally Blank -->
+    </div>
+
+    </div>
 	<br>
 
 	<!--Input for course-->

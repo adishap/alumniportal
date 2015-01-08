@@ -1,7 +1,7 @@
 <?php include 'base_template_2_column.php' ?>
 	
 	<?php startblock('page_title'); ?>
-		IIPS Alumni
+		About IIPS
 	<?php endblock(); ?>
 	
 	<!-- Starting of style block for custom CSS -->
@@ -10,47 +10,54 @@
 	<?php endblock() ?>
 
 	<?php startblock('page_heading'); ?>
-        IIPS Alumni
+        About IIPS
 	<?php endblock(); ?>
 	
 	<?php startblock('sidemenu'); ?>
 
 		  <ul class="nav side-tabs nav-pills">
-          	<li class="active btn-block"><a class="icon-chevron-sign-right" href="#tab0">IIPS Alumni Association</a></li>
-			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab1">Register</a></li>
-             <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab2">Log in</a></li>
-			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab3">Profile</a></li>
-             <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab4">Update Information</a></li>
-             <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab5">Search a Friend</a></li>
-			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab6">Photo Gallery</a></li>
-			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab7"> FAQ</a></li>
-			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab8"> Logout</a></li>
+			 <li class="active btn-block"><a class="icon-chevron-sign-right" href="#tab1">  About IIPS</a></li>
+			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab2">  Director</a></li>
+			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab3">  Objectives and Vision</a></li>
+			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab4">  Academic Calendar</a></li>
+			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab5">  IIPS @ Wikipedia</a></li>
+			 <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab6">  Anti-Ragging Committee</a></li>
 		   </ul>
 	<?php endblock() ; ?>
 
 	<?php startblock('content') ?>			  	  
 
-		<div id="tab0"  class="tab-content active">
-		<?php 
-				$aboutIIPSalumni = "textFiles/Alumni/about_IIPS_alumni.txt";  
-				 readTextFiles($aboutIIPSalumni);
-		  ?>
-		</div>
-        <div id="tab1"  class="tab-content active">
-		<?php 
-				$aboutIIPSalumni = "textFiles/Alumni/about_IIPS_alumni.txt";  
-				 readTextFiles($aboutIIPSalumni);
-		  ?>
-		</div>
-
-		<div id="tab2" class="tab-content hide">
+		<div id="tab1"  class="tab-content active text-justify">
+			<img class="pull-right" src="images/iipslogo.jpg" style="margin-left:10px;">
 			<?php 
-				include 'log_in.php';
-		    ?>
+				$aboutIIPS = "textFiles/About_IIPS/about_IIPS.txt";  
+				 readTextFiles($aboutIIPS);
+		  ?>
 		</div>
 
+		<div id="tab2" class="tab-content hide text-justify" style="text-align:justify; padding:0px 20px 0px 20px; margin-top:0px; line-height:1.5;">
+			<b>Meet the Director</b>
+		   <table style="background-color:#eeeeee; border:1px solid gray;" > <tr>  <td> <i>
+
+				<?php 
+					$director="textFiles/About_IIPS/director.txt";  
+					readTextFiles($director);
+			  ?>
+
+		</div>
+
+		<div id="tab3" class="tab-content hide text-justify">
+		   <b> What we Think</b><br><br>
+
+			<div style="background-color:#eeeeee;"><b>Objectives</b></div>
+				<ul type="disc" style="margin-left:50px;">
+					  <?php 
+							$objectives="textFiles/About_IIPS/objective.txt";  
+							readTextFiles($objectives);
+					  ?>
+		</div>
 		
-		<div id="tab3" class="tab-content hide">
+		<div id="tab4" class="tab-content hide text-justify">
 			<b>Academic calender</b>
 			<?php 
 				$academic_calender = "textFiles/Academic_Calender/academic_calender.txt" ;
@@ -58,22 +65,15 @@
 			?>
 		</div>
 		
-		<div id="tab4" class="tab-content hide">
-			<b>Academic calender</b>
+		<div id="tab5" class="tab-content hide text-justify">
 			<?php 
-				$academic_calender = "textFiles/Academic_Calender/academic_calender.txt" ;
-				readTextFiles($academic_calender) ;
-			?>
-		</div>
-		
-		<div id="tab5" class="tab-content hide">
-			<?php 
-				$FAQ = "textFiles/Alumni/FAQ.txt";  
-				 readTextFiles($FAQ);
+				$iipsWiki = "textFiles/About_IIPS/iips_wikipedia.txt";  
+				 readTextFiles($iipsWiki);
 		    ?>
+			Read More @ <a href="http://en.wikipedia.org/wiki/International_Institute_of_Professional_Studies">IIPS WikiPage</a>
 		</div>
 		
-		<div id="tab6" class="tab-content hide">
+		<div id="tab6" class="tab-content hide text-justify">
 			<b>IIPS Anti-Ragging Committee</b><br><br>
 			
 			<ul type="disc" style="margin-left:50px;">
@@ -82,19 +82,6 @@
 					readTextFiles($antiRagging); 
 			  ?>
 			</ul>	
-        </div>
-        <div id="tab7" class="tab-content hide">
-			<?php 
-				include 'log_in.php';
-		    ?>
-			
-		</div>  
-        <div id="tab7" class="tab-content hide">
-			<?php 
-				include 'log_out.php';
-		    ?>
-			
-		</div>           
+        </div>           
             
    <?php endblock(); ?>
- 
