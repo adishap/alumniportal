@@ -159,7 +159,7 @@ if(isset($_POST['register'])){
     
     <!-- Input for date-->
     <div class="col-md-1">
-    <label>Date</label><br>
+    <label>Day</label><br>
     <select name="birth_date" value ="<?php echo $birth_date ;?>">
 	<script>var i;for(i=01; i<=31; i++) {document.write("<option>"+i + "</option>");}</script>
 	</select>

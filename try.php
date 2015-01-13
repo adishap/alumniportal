@@ -16,8 +16,8 @@ echo '111';
 
 if(isset($_POST["submit"])) {
 	echo '222';
-	$target_dir = "images/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$target_dir = "images/Alumni/alumni_profile_picture/";
+$target_file = $target_dir ."old.jpeg";
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 echo '3333';
@@ -58,6 +58,7 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
+    rename($_FILES["fileToUpload"]["name"], "old.jpeg");
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {

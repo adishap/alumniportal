@@ -32,7 +32,7 @@ ob_start();
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab4">   Local Address</a></li>
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab5">  Professional Information</a></li>
        <li class="btn-block"><a class="icon-chevron-sign-right" href="#tab6">  Change Password</a></li>
-       </ul>
+      </ul>
   <?php endblock() ; ?>
 
   <?php startblock('content') ?>            
@@ -55,9 +55,23 @@ ob_start();
     <input type="hidden" name="update_name" value="update_name">
     <button type="submit" class="btn btn-primary" >Update Name</button><br><br>
     </form>
+    <br>
+    <br>
+    <form action="#" method="post" enctype="multipart/form-data" style="text-align:left;margin-left:5%">
+    
+    <legend>Change Display Picture:</legend>
+    
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <br>
+    
+    <!--Submit Button-->
+    <input type="hidden" name="upload_image" value="Upload Image">
+    <button type="submit" class="btn btn-primary" >Upload Image</button><br><br>
+    
+    </form>
 
     <?php
-    //backend for name
+    //backend for updating name
 
       if(isset($_POST['update_name'])){
         
@@ -78,7 +92,66 @@ ob_start();
           echo 'Please fill middle name or last name.';
         }
       }
+
+    //backend for updating image
+
+    if(isset($_POST['upload_image'])){
+
+      $target_dir = "images/Alumni/alumni_profile_picture/";
+      $uploadOk = 1;
+      $imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
+      $target_file = $target_dir.$user_email.".".$imageFileType;
+    
+      //checks file size
+      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+      if($check !== false) {
+        $uploadOk = 1;
+      }
+      else {
+        echo "<script>alert('File is not an image.')</script>";
+        $uploadOk = 0;
+      }   
+
+      // Check if file already exists
+      if (file_exists($target_file)) {
+        //delete image
+        unlink($target_file);
+      }
+
+      // Check file size
+      if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "<script>alert('Sorry, your file is too large.')</script>";
+        $uploadOk = 0;
+      }
+
+      // Allow certain file formats
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+        echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.')</script>";
+        $uploadOk = 0;
+      }
+
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+        echo "<script>alert('Sorry, your file was not uploaded.')</script>";
+        // if everything is ok, try to upload file
+      }
+      else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+          $image_update_query = "UPDATE `alum_master_table` SET `image_path`='".$target_file."' WHERE `user_email` ='".$user_email."'";
+          $image_update_result = mysqli_query($con,$image_update_query);
+
+          echo "<script>alert('The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.')</script>";
+        }
+        else {
+        echo "<script>alert('Sorry, there was an error uploading your file.')</script>";
+        }
+      }
+      
+    }
     ?> 
+
     </div>
     <!--tab1 End-->
 
@@ -106,7 +179,7 @@ ob_start();
     
     <!-- Input for date-->
     <div class="col-md-1">
-    <label>Date</label><br>
+    <label>Day</label><br>
     <select name="anniversary_date" value ="<?php echo $anniversary_date ;?>">
       <script>var i;for(i=01; i<=31; i++) {document.write("<option>"+i + "</option>");}</script>
     </select>

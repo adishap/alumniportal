@@ -59,6 +59,8 @@ else{
 	
 			$name = $row['first_name']." ".$row['middle_name']." ".$row['last_name'];
 			$date_of_birth = $row['date_of_birth'];
+            //conversion of date of birth in d-m-y format
+            $date_of_birth = date("d-m-Y", strtotime($date_of_birth));
 			$course = $row['course'];
 			$roll_no = $row['roll_no'];
 			$admission_year = $row['admission_year'];
@@ -69,7 +71,10 @@ else{
 			$martial_status = $row['martial_status'];
 			if($martial_status == "Married"){
 				$date_of_anniversary = $row['date_of_anniversary'];
-			}
+                //conversion of date of anniversary in d-m-y format
+                $date_of_anniversary = date("d-m-Y", strtotime($date_of_anniversary));
+            }
+            $image_path = $row['image_path'];
 	    }
 	}
 ?>
@@ -78,10 +83,25 @@ else{
 
     <div class="col-md-2">
     <!--Space for image-->
-     <img src="..." alt="Display picture" height="200" width="200" border="1px">
+    <?php
+    if($image_path == NULL){
+    ?>
+        <img src="images/Alumni/200x200.gif" alt="Display picture" height="200" width="200" border="1px">
+    <?php
+    }
+    else{
+    ?>
+        <img src=<?php echo $image_path;?> alt="Display picture" height="200" width="200" border="1px">
+    <?php
+    }
+    ?>
      </div>
 
-     <div class="col-md-10">
+     <div class="col-sm-1">
+     <!--Intentionally Blank-->
+     </div>
+
+     <div class="col-md-9">
      <br>
      <!--Name-->
      <h2><?php echo $name; ?></h2>
