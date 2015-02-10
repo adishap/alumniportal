@@ -139,22 +139,23 @@ A Workflow Diagram is a simple form of Flowchart depicting the flow of tasks or 
 <a href="https://drive.google.com/file/d/0B16C1BWsjffGWlFsV2kzTnNGdDQ/view?usp=sharing">Here's mine.</a>
 <br>
 It’s not pretty, but you can create better with many tools like SmartDraw, Giffy,etc.
-<strong>Web root organisation</strong>
-<br>
-This is what we have for files at the root of our web directory so far.
-<br>
-I used scaffolding technique idea to maintain website. It is a technique supported by some model-view-controller frameworks.
-<br>
-<br>
-<strong>HTML & CSS</strong>
-<br>
-Make an skelton pages 
-</p>
 
+</p>
 
 <p>
 <h3>
- Step 3<small>Look and feel of the website </small>
+ Step 3<small>Design database</small>
+</h3>
+
+According to the requirement, database can differ.<br>
+You can take help and see my <a href="https://drive.google.com/file/d/0B16C1BWsjffGX2xHZkk4U1FCNjQ/view?usp=sharing">database documentation</a>.
+<br>
+Once you prepare database documentation,create your database with MySQL.
+</p>
+
+<p>
+<h3>
+ Step 4<small>Look and feel of the website </small>
 </h3>
 <strong>Planning the look of website.</strong>
 <br>
@@ -164,6 +165,38 @@ We should create mock ups as it acts as a bridge between raw creative thoughts a
 <strong>Developing the front-end of website</strong>
 <br>
 Now, it's time to get our hands dirty with some markup! 
+
+<strong>Web root organisation</strong>
+<br>
+This is what we have for files at the root of our web directory so far.
+<br>
+I used scaffolding technique idea to maintain website. It is a technique supported by some model-view-controller frameworks.
+<br>
+<br>
+<strong>HTML & CSS</strong>
+<br>
+Make components of the website which are used frequently such as header, footer, sidebars and other panels.
+It will help you in many ways. Firstly, you don't have to copy the code for common components again and again. So,this will save your time. Secondly, if any change is required in a component, say you want to add any css file link in header, change is to be done only in one file. It will reduce your effort.
+You can include these files in your code.<br>
+I used include(a function of PHP):<br>
+<input type="text" disabled="" value="include('header.php');">  
+<br>
+Code all static pages and front-end of user-interactive webpages. Forms across whole site will be similar, so we set that up here. So, design forms, prepare all input fields required. We will set up user interactions afterwards for now just code front-end. Add comments wherever required, it will help you afterwards at the time of adding PHP code in your pages.   
+</p>
+
+Up to this point, I know how my website looks, as well as a basic idea of how it is going to function. The next step is to figure out what’s going to happen behind the scenes to allow our website to work the way planned.
+<br>
+
+<p>
+<h3>
+ Step 5<small>Develop the user interaction for website</small>
+</h3>
+Now that we have a workflow put together and the HTML and CSS to make it look good, we can actually start coding back-end.
+<br>
+First create file to connect MySQL database and include it files in which we need to connect database using require function of PHP. I used POST method to transfer data between pages to ensure security of critical data like sending username and password for login page.
+<br>  
+Diffrent types of encoding are done to store important data like passwords. I used md5 hashing to store passwords. 
+
 </p>
 
 <h4>And Finally...The Website!!!</h4>
