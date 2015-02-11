@@ -96,19 +96,19 @@ Let's get started...
 <h3>
  Step 1<small>Plan the website</small>
 </h3>
-A common problem with many Web projects: failure to plan.Planning is essential.<br>
-Decide the aim, purpose and goal of the website.Collect all the requirements(reason to make that website) and from the requirments choose the idea which suits best.
+A common problem with many Web projects: failure to plan. Planning is essential.<br>
+Decide the aim, purpose and goal of the website. Collect all the requirements (reason to make that website) and from the requirments choose the idea which suits best.
 <br>
 <strong>Sketch your Idea</strong>
 <br>
-Get your brain around what kinds of tools and processes will accomplish your goals.Create a roadmap document that provides a broad overview of the process of developing a website, from the initial needs assessment through the launch, maintenance and follow-up.This is where we put all the ideas, literally everything into a giant to-do list.
+Get your brain around what kinds of tools and processes will accomplish your goals.Create a roadmap document that provides a broad overview of the process of developing a website, from the initial needs assessment through the launch, maintenance and follow-up. This is where we put all the ideas, literally everything into a giant to-do list.
 </p>
 
 <p>
 <h3>
  Step 2<small> Decide development Approach</small>
 </h3>
-When done with the planning,we are going to analyze the system we are going to build.It requires these things to be completed:
+When done with the planning, we are going to analyze the system we are going to build. It requires these things to be completed:
 <ol>
 <li>Decide techstack we are going to use.</li>
 <li>Developing a Workflow.</li>
@@ -132,13 +132,13 @@ For front-end, HTML, CSS, JavaScript and Bootstrap(it is the most popular HTML, 
  <br>
 <strong>Developing a Workflow</strong>
 <br>
-As my websites have users, that means it needs a sign up form and a log in area for returning users.Because users should be just as concerned about security as I am, users need to be able to change their passwords, change their login, and delete their accounts. As I need to manage more than 10 webpages, so there is need to think about some workflow.
-
+As my websites have users, that means it needs a sign up form and a log in area for returning users. Because users should be just as concerned about security as I am, users need to be able to change their passwords, change their login, and delete their accounts. As I need to manage more than 10 webpages, so there is need to think about some workflow.
+<br>
 A Workflow Diagram is a simple form of Flowchart depicting the flow of tasks or actions from one person or group to another. It typically consists of a set of symbols representing actions or individuals connected by arrows indicating the flow from one to another. 
 <br>
 <a href="https://drive.google.com/file/d/0B16C1BWsjffGWlFsV2kzTnNGdDQ/view?usp=sharing">Here's mine.</a>
 <br>
-It’s not pretty, but you can create better with many tools like SmartDraw, Giffy,etc.
+It’s not pretty, but you can create better with many tools like SmartDraw, Giffy, etc.
 
 </p>
 
@@ -150,7 +150,7 @@ It’s not pretty, but you can create better with many tools like SmartDraw, Gif
 According to the requirement, database can differ.<br>
 You can take help and see my <a href="https://drive.google.com/file/d/0B16C1BWsjffGX2xHZkk4U1FCNjQ/view?usp=sharing">database documentation</a>.
 <br>
-Once you prepare database documentation,create your database with MySQL.
+Once you prepare database documentation, create your database with MySQL.
 </p>
 
 <p>
@@ -162,24 +162,24 @@ Once you prepare database documentation,create your database with MySQL.
 One thing I do is that design the look and feel of the website with a wired-frame tool. My personnel favourate is <a href="https://balsamiq.com/">balsamiq mockups</a>.
 We should create mock ups as it acts as a bridge between raw creative thoughts and the final product we are going to develop.
 <br>
-<strong>Developing the front-end of website</strong>
+<h3><small>Developing the front-end of website</small></h3>
 <br>
 Now, it's time to get our hands dirty with some markup! 
-
+<br>
 <strong>Web root organisation</strong>
 <br>
 This is what we have for files at the root of our web directory so far.
 <br>
 I used scaffolding technique idea to maintain website. It is a technique supported by some model-view-controller frameworks.
 <br>
-<br>
+
 <strong>HTML & CSS</strong>
 <br>
 Make components of the website which are used frequently such as header, footer, sidebars and other panels.
 It will help you in many ways. Firstly, you don't have to copy the code for common components again and again. So,this will save your time. Secondly, if any change is required in a component, say you want to add any css file link in header, change is to be done only in one file. It will reduce your effort.
 You can include these files in your code.<br>
-I used include(a function of PHP):<br>
-<input type="text" disabled="" value="include('header.php');">  
+I used include(a function of PHP)
+<br>
 <br>
 Code all static pages and front-end of user-interactive webpages. Forms across whole site will be similar, so we set that up here. So, design forms, prepare all input fields required. We will set up user interactions afterwards for now just code front-end. Add comments wherever required, it will help you afterwards at the time of adding PHP code in your pages.   
 </p>
@@ -193,13 +193,32 @@ Up to this point, I know how my website looks, as well as a basic idea of how it
 </h3>
 Now that we have a workflow put together and the HTML and CSS to make it look good, we can actually start coding back-end.
 <br>
-First create file to connect MySQL database and include it files in which we need to connect database using require function of PHP. I used POST method to transfer data between pages to ensure security of critical data like sending username and password for login page.
+First create file to connect MySQL database and include it files in which we need to connect database using require function of PHP.
 <br>  
-Diffrent types of encoding are done to store important data like passwords. I used md5 hashing to store passwords. 
-
+Diffrent types of encoding are done to store important data like passwords. I stored passwords with md5() encryption.
+<br>
+<br>
+<strong>PHP Tips</strong>
+<ol>
+<li>Befriend the <a href="http://php.net/manual/en/index.php">PHP Manual</a></li>
+<li>Use POST not GET</li>
+<li>Go OOP</li>
+<li>Properly secure your data</li>
+<li>Use PHP's Inbuilt Functions</li>
+<li>Use SQL-injections</li>
+<li>Indent Code and Use White Space for Readability</li>
+<li> Use Meaningful, Consistent Naming Conventions</li>
+<li>Comment , comment , comment</li>
+</ol>
 </p>
+<h3>Security</h3>
+<p>
+Security is incredibly important in any application. We have users with accounts who are storing data with us. Those users are putting their trust in us to make sure their data is safe, which includes their password and all the information they've entered. Passwords are stored in encrypted formats and never sent in the clear via Email. All the interaction that happens with the database is secure. Only users who are logged in can issue commands which result in database changes, and those users are only able to issue commands that affect their own data.
+</p>
+<h2>And Finally...The Website!!!</h2>
 
-<h4>And Finally...The Website!!!</h4>
+Thanks for following along this whole journey. Hope you enjoyed...
+
       </section>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
