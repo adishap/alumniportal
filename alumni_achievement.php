@@ -5,6 +5,8 @@
 	<?php endblock(); ?>
 	 
 	<?php startblock('content'); ?>
+    <br>
+      <br><br>
     <div class="row">
       
         <div class="col-lg-12">

@@ -17,7 +17,7 @@ if(!isset($_SESSION['user_email']) || (trim($_SESSION['user_email']) == '')) {
 
 		if(!empty($user_email) and !empty($password)){
 			
-			$query = "Select * from alum_login where user_email ='".$user_email."' and password = '".$password."'";
+			echo '<br><br>'.$query = "SELECT * FROM `user_login` WHERE `user_email` = '".$user_email."' AND `password` = '".$password."'";
 			$result = mysqli_query($con,$query);
 			$row = mysqli_fetch_array($result);
 			
@@ -89,7 +89,7 @@ if(!isset($_SESSION['user_email']) || (trim($_SESSION['user_email']) == '')) {
 	<button type="submit" class="btn btn-primary" style="text-align:center">LogIn</button><br><br>
 
 	Not Registered Yet?
-	<a href="alumni_register.php">Register</a> today.
+	<a href="register_alumni.php">Register</a> today.
 	
 	</form>
 	

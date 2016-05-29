@@ -5,6 +5,8 @@
 	<?php endblock(); ?>
 	 
 	<?php startblock('content'); ?>
+	<br>
+      <br><br>
 	<?php
 	$FAQ = 'textFiles/Alumni/FAQ.txt';
 	readTextFiles($FAQ);

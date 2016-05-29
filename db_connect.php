@@ -1,7 +1,7 @@
 <?php
 	$sql_host = 'localhost';
 	$sql_user = 'root';
-	$sql_pass = 'root';
+	$sql_pass = '';
 	$err_msg = "Error occured in connecting database";
     $sql_db = 'iips_alumni';
 	

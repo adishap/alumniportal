@@ -5,6 +5,8 @@
 	<?php endblock(); ?>
 	 
 	<?php startblock('content'); ?>
+	<br>
+      <br><br>
 	<?php
 	$alumniassociation = 'textFiles/Alumni/about_IIPS_alumni.txt';
 	readTextFiles($alumniassociation);

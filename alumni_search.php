@@ -32,7 +32,8 @@ ob_start();
      <?php
 	 	include('header.php');
 	 ?>
-	 
+	 <br><br><br>
+      <br><br>
      <div class="row">
      <div class="col-sm-3">
      <!-- Search Form div -->

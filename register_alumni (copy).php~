@@ -28,7 +28,8 @@
      <?php
 	 	include('header.php');
 	 ?>
- 
+ <br>
+      <br><br>
 <form action="#" method="post" style="text-align:left;margin-left:5%">
 <h3>Register</h3>
 

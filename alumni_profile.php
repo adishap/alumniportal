@@ -37,7 +37,8 @@ else{
     <?php
 		include('header.php');
 	?>
-	
+    <br>
+      <br><br>	
 	<!--contents-->
 	<?php
 

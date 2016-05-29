@@ -35,12 +35,12 @@ if(isset($_POST['register'])){
 			$query_num_rows = mysqli_num_rows($query_run);
 			if($query_num_rows == 0){//if no then register the user
 		
-				$insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`,`roll_no`) 
+				echo '<br><br>'. $insert_query = "INSERT INTO `alum_master_table`(`user_email`, `first_name`, `middle_name`, `last_name`, `gender`, `date_of_birth`, `admission_year`, `passing_year`, `course`,`loc_city`,`mobile_no`,`roll_no`) 
 								VALUES ('$user_email','$first_name','$middle_name','$last_name','$gender','$date_of_birth','$admission_year','$passing_year','$course','$city','$mobile_no','$roll_no')";
 				if($query_run = mysqli_query($con,$insert_query)){
 				
 					//now we will store password and email in alum login table
-					$login_detail_query = "INSERT INTO `alum_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
+					$login_detail_query = "INSERT INTO `user_login`(`user_email`, `password`) VALUES ('$user_email','$password')";
 					if($query_run = mysqli_query($con,$login_detail_query)){//successful then redirect it to log-in
 						header('location:alumni_profile.php');
 					}
@@ -107,7 +107,7 @@ if(isset($_POST['register'])){
 
 	<!--Input for first_name-->
 	<div class="col-sm-3"  >
-	<input name="first_name" type="text" placeholder="First Name"required />
+	<input name="first_name" type="text" placeholder="First Name" required />
 	</div>
 	
 	<!--Input for middle_nume-->
@@ -241,7 +241,7 @@ if(isset($_POST['register'])){
 	<!--Input for Mobile No-->	
 	<div class="col-sm-4">
 	<label>Mobile Number</label><br>
-	<input name="mobile_no" type="text" placeholder="+91-9876543210"required />
+	<input name="mobile_no" type="number" placeholder="9876543210"required />
 	</div>
 
 	<!--Input for Email id-->
@@ -295,7 +295,6 @@ if(isset($_POST['register'])){
 	<?php
 		include('footer.php');
 		include('jsLinks.php');
-		include('slider_jsLinks.php');
 	?>
 	 
 	

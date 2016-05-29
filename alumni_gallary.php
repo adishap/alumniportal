@@ -21,6 +21,8 @@
 			width:500px;
 			margin-top:2%}
 		</style>
+		<br>
+      <br><br>
 		<div id="tab1"  class="tab-content active">
 			<b>Photos</b><br><br />
 			<img src="images/Alumni/alum1.jpg" class="gallary"><br>

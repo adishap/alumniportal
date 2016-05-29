@@ -20,7 +20,7 @@ ob_start();
   <?php endblock() ?>
 
   <?php startblock('page_heading'); ?>
-        Update
+        update
   <?php endblock(); ?>
   
   <?php startblock('sidemenu'); ?>
@@ -36,7 +36,9 @@ ob_start();
   <?php endblock() ; ?>
 
   <?php startblock('content') ?>            
-    
+      <br>
+      <br><br>
+      <h1>Update Profile</h1>
     <!--tab1 Start-->
     <div id="tab1"  class="tab-content active text-justify">
     <!--name form-->
@@ -138,8 +140,7 @@ ob_start();
       }
       else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-
-          $image_update_query = "UPDATE `alum_master_table` SET `image_path`='".$target_file."' WHERE `user_email` ='".$user_email."'";
+		      $image_update_query = "UPDATE `alum_master_table` SET `image_path`='".$target_file."' WHERE `user_email` ='".$user_email."'";
           $image_update_result = mysqli_query($con,$image_update_query);
 
           echo "<script>alert('The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.')</script>";
